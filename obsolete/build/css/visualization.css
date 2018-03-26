@@ -1,0 +1,46 @@
+.visualization {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row; }
+  .visualization > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1; }
+    .visualization > div > svg {
+      -webkit-box-flex: 1;
+          -ms-flex-positive: 1;
+              flex-grow: 1; }
+      .visualization > div > svg, .visualization > div > svg * {
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none; }
+
+.axis.ruler {
+  font-family: -apple-system, sans-serif;
+  font-size: 9px;
+  font-weight: 400; }
+  .axis.ruler text {
+    fill: black;
+    fill-opacity: 0.5; }
+  .axis.ruler path {
+    fill: none;
+    stroke: none; }
+  .axis.ruler line {
+    fill: none;
+    stroke: black;
+    stroke-width: 1px;
+    stroke-opacity: 0.05; }
+  .axis.ruler.x text {
+    alignment-baseline: text-before-edge; }
+  .axis.ruler.y text {
+    text-anchor: start; }
