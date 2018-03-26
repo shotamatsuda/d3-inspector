@@ -37,7 +37,7 @@ SelectItem.defaultProps = {
 export function SelectGroup(props) {
   return (
     <optgroup
-      label={props.label}
+      label={props.title}
       disabled={props.disabled}
     >
       {props.children}
@@ -46,13 +46,13 @@ export function SelectGroup(props) {
 }
 
 SelectGroup.propTypes = {
-  label: PropTypes.string,
+  title: PropTypes.string,
   disabled: PropTypes.bool,
   children: childrenOf(SelectItem),
 }
 
 SelectGroup.defaultProps = {
-  label: '',
+  title: '',
   disabled: false,
   children: null,
 }

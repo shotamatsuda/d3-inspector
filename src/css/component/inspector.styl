@@ -2,13 +2,14 @@
 // Copyright (C) 2017-Present Shota Matsuda
 
 .element {
-  margin: 0.5rem
+  margin: 1rem
 }
 
 .item {
   display: flex
   flex-direction: row
   align-items: baseline
+  padding-left: 0.5rem
 }
 
 .itemTitle {
@@ -23,4 +24,27 @@
 .itemContent {
   flex-grow: 1
   flex-shrink: 1
+}
+
+.group {
+  & + & {
+    &:before {
+      content: ''
+      display: block
+      height: 1px
+      margin: 1rem -1rem
+      background-color: rgba(black, 0.1)
+    }
+  }
+}
+
+.groupTitle {
+  margin-bottom: 0.5rem
+  padding-left: 0.5rem
+  color: rgba(black, 0.33)
+  font-weight: bold
+  text-transform: uppercase
+}
+
+.groupContent {
 }

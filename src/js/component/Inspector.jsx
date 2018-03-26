@@ -38,6 +38,35 @@ InspectorItem.defaultProps = {
   onChange: null,
 }
 
+export function InspectorGroup(props) {
+  return (
+    <div className={styles.group}>
+      {props.title ? (
+        <div className={styles.groupTitle}>
+          {props.title}
+        </div>
+      ) : null}
+      {React.Children.map(props.children, child => {
+        return React.cloneElement(child, {
+          onChange: props.onChange,
+        })
+      })}
+    </div>
+  )
+}
+
+InspectorGroup.propTypes = {
+  title: PropTypes.node,
+  children: childrenOf(InspectorItem),
+  onChange: PropTypes.func,
+}
+
+InspectorGroup.defaultProps = {
+  title: '',
+  children: null,
+  onChange: null,
+}
+
 export default function Inspector(props) {
   return (
     <div
@@ -57,7 +86,7 @@ export default function Inspector(props) {
 
 Inspector.propTypes = {
   className: PropTypes.string,
-  children: childrenOf(InspectorItem),
+  children: childrenOf(InspectorItem, InspectorGroup),
   onChange: PropTypes.func,
 }
 
