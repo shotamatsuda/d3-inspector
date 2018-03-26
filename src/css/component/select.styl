@@ -4,7 +4,12 @@
 @import '../mixin'
 
 .element {
+  display: inline-block
   margin: 0.5rem
+
+  &__fullWidth {
+    display: block
+  }
 }
 
 .input {
@@ -12,9 +17,8 @@
   appearance: none
   outline: none
   box-sizing: border-box
-  width: 100%
   margin: 0
-  padding: 0.3rem 0.5rem
+  padding: 0.3rem 1.3rem 0.3rem 0.5rem
   border: none
   border-radius: 0.2rem
   box-shadow: 0 0 0 1px rgba(black, 0.1)
@@ -24,6 +28,10 @@
   background-size: 1rem 1rem
   font-size: inherit
   transition: background-color 0.1s ease, box-shadow 0.1s ease
+
+  &__fullWidth {
+    width: 100%
+  }
 
   &:focus {
     box-shadow: 0 0 0 1px rgba(black, 0.1), 0 0 0 4px rgba(gray, 0.4)

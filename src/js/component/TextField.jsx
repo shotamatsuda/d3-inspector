@@ -34,11 +34,17 @@ export default class TextField extends PureComponent {
       <div
         className={classNames([
           styles.element,
-          this.props.className,
+          this.props.className, {
+            [styles.element__fullWidth]: this.props.fullWidth,
+          },
         ])}
       >
         <input
-          className={styles.input}
+          className={classNames([
+            styles.input, {
+              [styles.input__fullWidth]: this.props.fullWidth,
+            },
+          ])}
           type="text"
           name={this.props.name}
           value={this.state.value}
@@ -54,6 +60,7 @@ export default class TextField extends PureComponent {
 TextField.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
+  fullWidth: PropTypes.bool,
   className: PropTypes.string,
   onChange: PropTypes.func,
 }
@@ -61,6 +68,7 @@ TextField.propTypes = {
 TextField.defaultProps = {
   name: null,
   value: '',
+  fullWidth: false,
   className: null,
   onChange: null,
 }

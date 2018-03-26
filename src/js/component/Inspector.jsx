@@ -18,6 +18,7 @@ export function InspectorItem(props) {
       <div className={styles.itemContent}>
         {React.Children.map(props.children, child => {
           return React.cloneElement(child, {
+            fullWidth: true,
             onChange: props.onChange,
           })
         })}

@@ -84,11 +84,17 @@ export default class Select extends PureComponent {
       <div
         className={classNames([
           styles.element,
-          this.props.className,
+          this.props.className, {
+            [styles.element__fullWidth]: this.props.fullWidth,
+          },
         ])}
       >
         <select
-          className={styles.input}
+          className={classNames([
+            styles.input, {
+              [styles.input__fullWidth]: this.props.fullWidth,
+            },
+          ])}
           name={this.props.name}
           value={this.state.value}
           onChange={this.onChange}
@@ -103,6 +109,7 @@ export default class Select extends PureComponent {
 Select.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
+  fullWidth: PropTypes.bool,
   className: PropTypes.string,
   children: childrenOf(SelectItem, SelectGroup),
   onChange: PropTypes.func,
@@ -111,6 +118,7 @@ Select.propTypes = {
 Select.defaultProps = {
   name: null,
   value: '',
+  fullWidth: false,
   className: null,
   children: null,
   onChange: null,

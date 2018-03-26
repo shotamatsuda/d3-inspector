@@ -12,3 +12,30 @@
   width: 100vw
   height: 100vh
 }
+
+.xGrid, .yGrid {
+  text {
+    fill: rgba(black, 0.5)
+  }
+
+  path {
+    display: none
+  }
+
+  line {
+    stroke: rgba(black, 0.05)
+    stroke-width: 1px
+  }
+}
+
+.xGrid {
+  text {
+    alignment-baseline: text-before-edge
+  }
+}
+
+.yGrid {
+  text {
+    text-anchor: start
+  }
+}

@@ -34,11 +34,17 @@ export default class NumberField extends PureComponent {
       <div
         className={classNames([
           styles.element,
-          this.props.className,
+          this.props.className, {
+            [styles.element__fullWidth]: this.props.fullWidth,
+          },
         ])}
       >
         <input
-          className={styles.input}
+          className={classNames([
+            styles.input, {
+              [styles.input__fullWidth]: this.props.fullWidth,
+            },
+          ])}
           type="number"
           name={this.props.name}
           value={this.state.value}
@@ -58,6 +64,7 @@ NumberField.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
   step: PropTypes.number,
+  fullWidth: PropTypes.bool,
   className: PropTypes.string,
   onChange: PropTypes.func,
 }
@@ -68,6 +75,7 @@ NumberField.defaultProps = {
   min: null,
   max: null,
   step: null,
+  fullWidth: false,
   className: null,
   onChange: null,
 }
