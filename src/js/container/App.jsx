@@ -3,20 +3,22 @@
 
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import Checkbox from '../component/Checkbox'
 import Coordinates from '../component/Coordinates'
 import Inspector, { InspectorItem, InspectorGroup } from '../component/Inspector'
 import NumberField from '../component/NumberField'
-import Range from '../component/Range'
 import Radio, { RadioGroup } from '../component/Radio'
+import Range from '../component/Range'
 import Select, { SelectItem } from '../component/Select'
 import TextField from '../component/TextField'
+import Visualization from '../component/Visualization'
 
 function App(props) {
   return (
-    <div>
+    <Fragment>
+      <Visualization />
       <Inspector onChange={(name, value) => console.log(name, value)}>
         <InspectorGroup title="Inspector Group">
           <InspectorItem title="Text">
@@ -58,7 +60,7 @@ function App(props) {
           </InspectorItem>
         </InspectorGroup>
       </Inspector>
-    </div>
+    </Fragment>
   )
 }
 
