@@ -11,19 +11,19 @@ export default class Checkbox extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      value: props.value,
+      checked: props.checked,
     }
     this.onChange = this.onChange.bind(this)
   }
 
   onChange(event) {
-    const value = event.target.checked
-    if (value !== this.state.value) {
+    const { checked } = event.target
+    if (checked !== this.state.checked) {
       this.setState({
-        value,
+        checked,
       }, () => {
         if (this.props.onChange) {
-          this.props.onChange(this.props.name, this.state.value)
+          this.props.onChange(this.props.name, this.state.checked)
         }
       })
     }
@@ -42,7 +42,7 @@ export default class Checkbox extends PureComponent {
             className={styles.input}
             type="checkbox"
             name={this.props.name}
-            checked={this.state.value}
+            checked={this.state.checked}
             onChange={this.onChange}
           />
           {this.props.title}
@@ -54,7 +54,7 @@ export default class Checkbox extends PureComponent {
 
 Checkbox.propTypes = {
   name: PropTypes.string,
-  value: PropTypes.bool,
+  checked: PropTypes.bool,
   title: PropTypes.node,
   className: PropTypes.string,
   onChange: PropTypes.func,
@@ -62,7 +62,7 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {
   name: null,
-  value: false,
+  checked: false,
   title: null,
   className: null,
   onChange: null,

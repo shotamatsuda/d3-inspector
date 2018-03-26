@@ -3,7 +3,7 @@
 
 svg-background(data, width, height, fill = black) {
   background-image: url(s(
-    "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 %s %s'><style>path{fill:%s;}</style>%s</svg>",
+    "data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 %s %s'><style>path,line,rect,circle{fill:%s;}</style>%s</svg>",
     remove-unit(width),
     remove-unit(height),
     fill,
