@@ -22,11 +22,12 @@ export default class Range extends Component {
     const value = +event.target.value
     if (value !== this.state.value) {
       this.setState({
-        value: +event.target.value,
+        value,
+      }, () => {
+        if (this.props.onChange) {
+          this.props.onChange(this.props.name, this.state.value)
+        }
       })
-      if (this.props.onChange) {
-        this.props.onChange(this.props.name, value)
-      }
     }
   }
 

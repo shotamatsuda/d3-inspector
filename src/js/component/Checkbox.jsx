@@ -21,10 +21,11 @@ export default class Checkbox extends Component {
     if (value !== this.state.value) {
       this.setState({
         value,
+      }, () => {
+        if (this.props.onChange) {
+          this.props.onChange(this.props.name, this.state.value)
+        }
       })
-      if (this.props.onChange) {
-        this.props.onChange(this.props.name, value)
-      }
     }
   }
 

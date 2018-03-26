@@ -5,12 +5,13 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import Inspector, { InspectorItem } from '../component/Inspector'
-import TextField from '../component/TextField'
-import Range from '../component/Range'
-import NumberField from '../component/NumberField'
 import Checkbox from '../component/Checkbox'
+import Coordinates from '../component/Coordinates'
+import Inspector, { InspectorItem } from '../component/Inspector'
+import NumberField from '../component/NumberField'
+import Range from '../component/Range'
 import Select, { SelectItem, SelectGroup } from '../component/Select'
+import TextField from '../component/TextField'
 
 function App(props) {
   return (
@@ -36,6 +37,15 @@ function App(props) {
         </InspectorItem>
         <InspectorItem title="Range">
           <Range />
+        </InspectorItem>
+        <InspectorItem title="Coordinates">
+          <Coordinates />
+        </InspectorItem>
+        <InspectorItem title="Coordinates">
+          <Coordinates dimensions={3} />
+        </InspectorItem>
+        <InspectorItem title="Coordinates">
+          <Coordinates dimensions={4} />
         </InspectorItem>
       </Inspector>
     </div>
