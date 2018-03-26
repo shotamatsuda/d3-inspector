@@ -3,11 +3,11 @@
 
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import styles from '../../css/component/text-field.styl'
 
-export default class TextField extends Component {
+export default class TextField extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {

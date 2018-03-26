@@ -3,11 +3,11 @@
 
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import styles from '../../css/component/checkbox.styl'
 
-export default class Checkbox extends Component {
+export default class Checkbox extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {

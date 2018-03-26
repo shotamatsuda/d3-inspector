@@ -3,7 +3,7 @@
 
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import childrenOf from '../validator/childrenOf'
 
@@ -58,7 +58,7 @@ SelectGroup.defaultProps = {
   children: null,
 }
 
-export default class Select extends Component {
+export default class Select extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {

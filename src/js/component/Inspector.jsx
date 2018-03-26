@@ -3,7 +3,7 @@
 
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 
 import childrenOf from '../validator/childrenOf'
 
@@ -36,32 +36,21 @@ InspectorItem.defaultProps = {
   children: null,
 }
 
-export default class Inspector extends Component {
-  constructor(props) {
-    super(props)
-    this.onChange = this.onChange.bind(this)
-  }
-
-  onChange(name, value) {
-    console.log(name, value)
-  }
-
-  render() {
-    return (
-      <div
-        className={classNames([
-          styles.element,
-          this.props.className,
-        ])}
-      >
-        {React.Children.map(this.props.children, child => {
-          return React.cloneElement(child, {
-            onChange: this.onChange,
-          })
-        })}
-      </div>
-    )
-  }
+export default function Inspector(props) {
+  return (
+    <div
+      className={classNames([
+        styles.element,
+        props.className,
+      ])}
+    >
+      {React.Children.map(props.children, child => {
+        return React.cloneElement(child, {
+          onChange: props.onChange,
+        })
+      })}
+    </div>
+  )
 }
 
 Inspector.propTypes = {

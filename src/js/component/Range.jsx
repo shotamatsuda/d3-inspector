@@ -3,13 +3,13 @@
 
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import NumberField from './NumberField'
 
 import styles from '../../css/component/range.styl'
 
-export default class Range extends Component {
+export default class Range extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {

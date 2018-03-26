@@ -3,11 +3,11 @@
 
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import styles from '../../css/component/number-field.styl'
 
-export default class NumberField extends Component {
+export default class NumberField extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {

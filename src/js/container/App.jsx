@@ -16,7 +16,7 @@ import TextField from '../component/TextField'
 function App(props) {
   return (
     <div>
-      <Inspector>
+      <Inspector onChange={(name, value) => console.log(name, value)}>
         <InspectorItem title="Text">
           <TextField />
         </InspectorItem>
@@ -31,20 +31,20 @@ function App(props) {
           </Select>
         </InspectorItem>
         <InspectorItem title="Checkbox">
-          <Checkbox title="Item 1" onChange={event => console.log(event)} />
+          <Checkbox title="Item 1" />
           <Checkbox title="Item 2" />
           <Checkbox title="Item 3" />
         </InspectorItem>
         <InspectorItem title="Range">
           <Range />
         </InspectorItem>
-        <InspectorItem title="Coordinates">
+        <InspectorItem title="2 Coordinates">
           <Coordinates />
         </InspectorItem>
-        <InspectorItem title="Coordinates">
+        <InspectorItem title="3 Coordinates">
           <Coordinates dimensions={3} />
         </InspectorItem>
-        <InspectorItem title="Coordinates">
+        <InspectorItem title="4 Coordinates">
           <Coordinates dimensions={4} />
         </InspectorItem>
       </Inspector>
