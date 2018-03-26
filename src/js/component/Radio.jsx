@@ -53,9 +53,23 @@ Radio.defaultProps = {
 export class RadioGroup extends PureComponent {
   constructor(props) {
     super(props)
-    const [child] = React.Children.toArray(props.children)
-    this.state = {
-      value: (child && child.props.value) || null,
+    if (props.value != null) {
+      this.state = {
+        value: props.value,
+      }
+    } else {
+      const children = React.Children.toArray(props.children)
+      const checked = children.find(child => child.props.checked)
+      if (checked) {
+        this.state = {
+          value: checked.props.value || null,
+        }
+      } else {
+        const [child] = React.Children.toArray(props.children)
+        this.state = {
+          value: (child && child.props.value) || null,
+        }
+      }
     }
     this.onChange = this.onChange.bind(this)
   }
