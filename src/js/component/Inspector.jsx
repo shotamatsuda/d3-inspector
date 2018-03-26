@@ -29,11 +29,13 @@ export function InspectorItem(props) {
 InspectorItem.propTypes = {
   title: PropTypes.node,
   children: PropTypes.node,
+  onChange: PropTypes.func,
 }
 
 InspectorItem.defaultProps = {
   title: null,
   children: null,
+  onChange: null,
 }
 
 export default function Inspector(props) {
@@ -56,9 +58,11 @@ export default function Inspector(props) {
 Inspector.propTypes = {
   className: PropTypes.string,
   children: childrenOf(InspectorItem),
+  onChange: PropTypes.func,
 }
 
 Inspector.defaultProps = {
   className: null,
   children: null,
+  onChange: null,
 }

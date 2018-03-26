@@ -30,7 +30,6 @@ SelectItem.propTypes = {
 SelectItem.defaultProps = {
   title: null,
   value: '',
-  selected: false,
   disabled: false,
   children: null,
 }

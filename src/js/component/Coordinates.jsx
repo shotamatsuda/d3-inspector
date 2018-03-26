@@ -5,14 +5,17 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 
-import NumberField from './NumberField'
-
 import styles from '../../css/component/coordinates.styl'
 
 export default class Coordinates extends PureComponent {
   constructor(props) {
     super(props)
-    const { x, y, z, w } = props.value || {}
+    const {
+      x,
+      y,
+      z,
+      w,
+    } = props.value || {}
     const value = {
       x: +x || 0,
       y: +y || 0,
@@ -117,7 +120,12 @@ export default class Coordinates extends PureComponent {
 
 Coordinates.propTypes = {
   name: PropTypes.string,
-  value: PropTypes.object,
+  value: PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number,
+    z: PropTypes.number,
+    w: PropTypes.number,
+  }),
   min: PropTypes.number,
   max: PropTypes.number,
   step: PropTypes.number,

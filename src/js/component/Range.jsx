@@ -5,8 +5,6 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 
-import NumberField from './NumberField'
-
 import styles from '../../css/component/range.styl'
 
 export default class Range extends PureComponent {
