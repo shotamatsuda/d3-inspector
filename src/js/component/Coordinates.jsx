@@ -1,9 +1,10 @@
-// The MIT License
-// Copyright (C) 2017-Present Shota Matsuda
+// Takram Confidential
+// Copyright (C) 2018-Present Takram
 
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
+import shallowEqual from 'shallowequal'
 
 import styles from '../../css/component/coordinates.styl'
 
@@ -32,6 +33,18 @@ export default class Coordinates extends PureComponent {
     this.onChange = this.onChange.bind(this)
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { value } = nextProps
+    if (value == null ||
+        shallowEqual(value, this.props.value) ||
+        shallowEqual(value, this.state.value)) {
+      return
+    }
+    this.setState({
+      value,
+    })
+  }
+
   onChange(event) {
     const { name } = event.target
     const value = +event.target.value
@@ -54,7 +67,9 @@ export default class Coordinates extends PureComponent {
       <div
         className={classNames([
           styles.element,
-          this.props.className,
+          this.props.className, {
+            [styles.element__fullWidth]: this.props.fullWidth,
+          },
         ])}
       >
         <label className={styles.label}>
@@ -66,6 +81,7 @@ export default class Coordinates extends PureComponent {
             min={this.props.min}
             max={this.props.max}
             step={this.props.step}
+            disabled={this.props.disabled}
             onChange={this.onChange}
           />
           <span className={styles.name}>X</span>
@@ -79,6 +95,7 @@ export default class Coordinates extends PureComponent {
             min={this.props.min}
             max={this.props.max}
             step={this.props.step}
+            disabled={this.props.disabled}
             onChange={this.onChange}
           />
           <span className={styles.name}>Y</span>
@@ -93,6 +110,7 @@ export default class Coordinates extends PureComponent {
               min={this.props.min}
               max={this.props.max}
               step={this.props.step}
+              disabled={this.props.disabled}
               onChange={this.onChange}
             />
             <span className={styles.name}>Z</span>
@@ -108,6 +126,7 @@ export default class Coordinates extends PureComponent {
               min={this.props.min}
               max={this.props.max}
               step={this.props.step}
+              disabled={this.props.disabled}
               onChange={this.onChange}
             />
             <span className={styles.name}>W</span>
@@ -130,6 +149,8 @@ Coordinates.propTypes = {
   max: PropTypes.number,
   step: PropTypes.number,
   dimensions: PropTypes.number,
+  fullWidth: PropTypes.bool,
+  disabled: PropTypes.bool,
   className: PropTypes.string,
   onChange: PropTypes.func,
 }
@@ -141,6 +162,8 @@ Coordinates.defaultProps = {
   max: null,
   step: null,
   dimensions: 2,
+  fullWidth: false,
+  disabled: false,
   className: null,
   onChange: null,
 }

@@ -1,5 +1,5 @@
-// The MIT License
-// Copyright (C) 2017-Present Shota Matsuda
+// Takram Confidential
+// Copyright (C) 2018-Present Takram
 
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
@@ -14,16 +14,25 @@ export default function Radio(props) {
     <div
       className={classNames([
         styles.element,
-        props.className,
+        props.className, {
+          [styles.element__fullWidth]: props.fullWidth,
+        },
       ])}
     >
-      <label className={styles.label}>
+      <label
+        className={classNames([
+          styles.label, {
+            [styles.label__fullWidth]: props.fullWidth,
+            [styles.label__disabled]: props.disabled,
+          },
+        ])}
+      >
         <input
           className={styles.input}
           type="radio"
-          name={props.name}
           value={props.value}
           checked={props.checked}
+          disabled={props.disabled}
           onChange={props.onChange}
         />
         {props.title}
@@ -33,19 +42,21 @@ export default function Radio(props) {
 }
 
 Radio.propTypes = {
-  name: PropTypes.string,
   value: PropTypes.string,
   checked: PropTypes.bool,
   title: PropTypes.node,
+  fullWidth: PropTypes.bool,
+  disabled: PropTypes.bool,
   className: PropTypes.string,
   onChange: PropTypes.func,
 }
 
 Radio.defaultProps = {
-  name: null,
   value: null,
   checked: false,
   title: null,
+  fullWidth: false,
+  disabled: false,
   className: null,
   onChange: null,
 }
@@ -74,6 +85,18 @@ export class RadioGroup extends PureComponent {
     this.onChange = this.onChange.bind(this)
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { value } = nextProps
+    if (value == null ||
+        value === this.props.value ||
+        value === this.state.value) {
+      return
+    }
+    this.setState({
+      value,
+    })
+  }
+
   onChange(event) {
     const { value } = event.target
     if (value !== this.state.value) {
@@ -92,8 +115,9 @@ export class RadioGroup extends PureComponent {
       <Fragment>
         {React.Children.map(this.props.children, child => {
           return React.cloneElement(child, {
-            name: this.props.name,
             checked: child.props.value === this.state.value,
+            fullWidth: child.props.fullWidth || this.props.fullWidth,
+            disabled: child.props.disabled || this.props.disabled,
             onChange: this.onChange,
           })
         })}
@@ -105,6 +129,8 @@ export class RadioGroup extends PureComponent {
 RadioGroup.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
+  fullWidth: PropTypes.bool,
+  disabled: PropTypes.bool,
   children: childrenOf(Radio),
   onChange: PropTypes.func,
 }
@@ -112,6 +138,8 @@ RadioGroup.propTypes = {
 RadioGroup.defaultProps = {
   name: null,
   value: null,
+  fullWidth: false,
+  disabled: false,
   children: null,
   onChange: null,
 }

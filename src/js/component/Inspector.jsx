@@ -1,5 +1,5 @@
-// The MIT License
-// Copyright (C) 2017-Present Shota Matsuda
+// Takram Confidential
+// Copyright (C) 2018-Present Takram
 
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
@@ -73,7 +73,10 @@ export default function Inspector(props) {
     <div
       className={classNames([
         styles.element,
-        props.className,
+        styles[`element__${props.position}`],
+        props.className, {
+          [styles.element__floating]: props.floating,
+        },
       ])}
     >
       {React.Children.map(props.children, child => {
@@ -86,12 +89,21 @@ export default function Inspector(props) {
 }
 
 Inspector.propTypes = {
+  floating: PropTypes.bool,
+  position: PropTypes.oneOf([
+    'topLeft',
+    'topRight',
+    'bottomRight',
+    'bottomLeft',
+  ]),
   className: PropTypes.string,
   children: childrenOf(InspectorItem, InspectorGroup),
   onChange: PropTypes.func,
 }
 
 Inspector.defaultProps = {
+  floating: false,
+  position: 'topLeft',
   className: null,
   children: null,
   onChange: null,

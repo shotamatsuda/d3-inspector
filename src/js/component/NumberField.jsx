@@ -1,5 +1,5 @@
-// The MIT License
-// Copyright (C) 2017-Present Shota Matsuda
+// Takram Confidential
+// Copyright (C) 2018-Present Takram
 
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
@@ -14,6 +14,18 @@ export default class NumberField extends PureComponent {
       value: props.value,
     }
     this.onChange = this.onChange.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { value } = nextProps
+    if (value == null ||
+        value === this.props.value ||
+        value === this.state.value) {
+      return
+    }
+    this.setState({
+      value,
+    })
   }
 
   onChange(event) {
@@ -51,6 +63,7 @@ export default class NumberField extends PureComponent {
           min={this.props.min}
           max={this.props.max}
           step={this.props.step}
+          disabled={this.props.disabled}
           onChange={this.onChange}
         />
       </div>
@@ -65,6 +78,7 @@ NumberField.propTypes = {
   max: PropTypes.number,
   step: PropTypes.number,
   fullWidth: PropTypes.bool,
+  disabled: PropTypes.bool,
   className: PropTypes.string,
   onChange: PropTypes.func,
 }
@@ -76,6 +90,7 @@ NumberField.defaultProps = {
   max: null,
   step: null,
   fullWidth: false,
+  disabled: false,
   className: null,
   onChange: null,
 }

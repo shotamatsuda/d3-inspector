@@ -1,5 +1,5 @@
-// The MIT License
-// Copyright (C) 2017-Present Shota Matsuda
+// Takram Confidential
+// Copyright (C) 2018-Present Takram
 
 import PropTypes from 'prop-types'
 import React from 'react'

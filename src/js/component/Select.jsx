@@ -1,5 +1,5 @@
-// The MIT License
-// Copyright (C) 2017-Present Shota Matsuda
+// Takram Confidential
+// Copyright (C) 2018-Present Takram
 
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
@@ -66,6 +66,18 @@ export default class Select extends PureComponent {
     this.onChange = this.onChange.bind(this)
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { value } = nextProps
+    if (value == null ||
+        value === this.props.value ||
+        value === this.state.value) {
+      return
+    }
+    this.setState({
+      value,
+    })
+  }
+
   onChange(event) {
     const { value } = event.target
     if (value !== this.state.value) {
@@ -97,6 +109,7 @@ export default class Select extends PureComponent {
           ])}
           name={this.props.name}
           value={this.state.value}
+          disabled={this.props.disabled}
           onChange={this.onChange}
         >
           {this.props.children}
@@ -110,6 +123,7 @@ Select.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   fullWidth: PropTypes.bool,
+  disabled: PropTypes.bool,
   className: PropTypes.string,
   children: childrenOf(SelectItem, SelectGroup),
   onChange: PropTypes.func,
@@ -119,6 +133,7 @@ Select.defaultProps = {
   name: null,
   value: '',
   fullWidth: false,
+  disabled: false,
   className: null,
   children: null,
   onChange: null,

@@ -1,19 +1,45 @@
-// The MIT License
-// Copyright (C) 2017-Present Shota Matsuda
+// Takram Confidential
+// Copyright (C) 2018-Present Takram
 
 .element {
-  position: absolute
-  top: 1rem
-  left: 1rem
-  width: 20rem
+  overflow: scroll
   padding: 1rem
-  border-radius: 0.5rem
-  box-shadow: 0 0 0 1px rgba(black, 0.05)
   background-color: #fafafa
   user-select: none
+  box-sizing: border-box
+  height: 100%
 
   *::selection {
     background-color: #cccccc
+  }
+
+  &__floating {
+    position: absolute
+    width: 25rem
+    height: auto
+    max-height: calc(100% - 2rem)
+    border-radius: 0.5rem
+    box-shadow: 0 0 0 1px rgba(black, 0.05)
+  }
+
+  &__floating&__topLeft {
+    top: 1rem
+    left: 1rem
+  }
+
+  &__floating&__topRight {
+    top: 1rem
+    right: 1rem
+  }
+
+  &__floating&__bottomRight {
+    right: 1rem
+    bottom: 1rem
+  }
+
+  &__floating&__bottomLeft {
+    bottom: 1rem
+    left: 1rem
   }
 }
 

@@ -6,163 +6,264 @@ import * as d3 from 'd3'
 import PropTypes from 'prop-types'
 import React, { Fragment, PureComponent } from 'react'
 
+import * as actions from '../actions'
+import Button from '../component/Button'
 import Checkbox from '../component/Checkbox'
 import Coordinates from '../component/Coordinates'
+import Grid from '../component/Grid'
 import Inspector, { InspectorItem, InspectorGroup } from '../component/Inspector'
+import Label from '../component/Label'
+import Matrix from '../component/Matrix'
 import NumberField from '../component/NumberField'
 import Radio, { RadioGroup } from '../component/Radio'
 import Range from '../component/Range'
 import Select, { SelectItem } from '../component/Select'
 import TextField from '../component/TextField'
-import ScatterPlot from '../component/ScatterPlot'
-import Grid from '../component/Grid'
 
 class App extends PureComponent {
   constructor(props) {
     super(props)
-    this.state = {
-      items: null,
-      clusters: null,
-    }
   }
 
-  componentDidMount() {
-    this.loadData('highschool')
+  renderInspector(props = {}) {
+    return (
+      <Inspector
+        floating
+        onChange={(name, value) => {
+          this.props.setData({
+            [name]: value,
+          })
+        }}
+        {...props}
+      >
+        <InspectorGroup title="Inspector Group">
+          <InspectorItem title="Label">
+            <Label
+              title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+              {...props}
+            />
+          </InspectorItem>
+          <InspectorItem title="Text">
+            <TextField
+              name="text"
+              value={this.props.data.text}
+              {...props}
+            />
+          </InspectorItem>
+          <InspectorItem title="Number">
+            <NumberField
+              name="number"
+              value={this.props.data.number}
+              {...props}
+            />
+          </InspectorItem>
+          <InspectorItem title="Select">
+            <Select
+              name="select"
+              value={this.props.data.select}
+              {...props}
+            >
+              <SelectItem value="0" title="Item 1" />
+              <SelectItem value="1" title="Item 2" />
+              <SelectItem value="2" title="Item 3" />
+            </Select>
+          </InspectorItem>
+          <InspectorItem title="Checkbox">
+            <Checkbox
+              title="Item 1"
+              name="checkbox1"
+              checked={this.props.data.checkbox1}
+              {...props}
+            />
+            <Checkbox
+              title="Item 2"
+              name="checkbox2"
+              checked={this.props.data.checkbox2}
+              {...props}
+            />
+            <Checkbox
+              title="Item 3"
+              name="checkbox3"
+              checked={this.props.data.checkbox3}
+              {...props}
+            />
+          </InspectorItem>
+          <InspectorItem title="Radio">
+            <RadioGroup
+              name="radio"
+              value={this.props.data.radio}
+              {...props}
+            >
+              <Radio value="0" title="Item 1" />
+              <Radio value="1" title="Item 2" />
+              <Radio value="2" title="Item 3" />
+            </RadioGroup>
+          </InspectorItem>
+          <InspectorItem title="Range">
+            <Range
+              name="range"
+              value={this.props.data.range}
+              {...props}
+            />
+          </InspectorItem>
+          <InspectorItem title="2 Coordinates">
+            <Coordinates
+              name="coordinates2"
+              value={this.props.data.coordinates2}
+              {...props}
+            />
+          </InspectorItem>
+          <InspectorItem title="3 Coordinates">
+            <Coordinates
+              dimensions={3}
+              name="coordinates3"
+              value={this.props.data.coordinates3}
+              {...props}
+            />
+          </InspectorItem>
+          <InspectorItem title="4 Coordinates">
+            <Coordinates
+              dimensions={4}
+              name="coordinates4"
+              value={this.props.data.coordinates4}
+              {...props}
+            />
+          </InspectorItem>
+          <InspectorItem title="Matrix">
+            <Matrix
+              cols={3}
+              rows={3}
+              name="matrix"
+              value={this.props.data.matrix}
+              {...props}
+            />
+          </InspectorItem>
+          <InspectorItem title="Button">
+            <Button
+              title="Button"
+              {...props}
+            />
+            <Button
+              title="Button"
+              {...props}
+            />
+          </InspectorItem>
+        </InspectorGroup>
+      </Inspector>
+    )
   }
 
-  async loadData(value) {
-    const items = await fetch(`/data/list/list_for_${value}.tsv`)
-      .then(response => {
-        return response.text()
-      }).then(response => {
-        return d3.tsvParse(response)
-      }).then(items => {
-        return items.map(item => {
-          return {
-            cluster: +item.cluster_id,
-            vector: item.vector.split('|').map(value => +value),
-          }
-        })
-      })
-
-    const clusters = await fetch(`/data/cluster/cluster_for_${value}.tsv`)
-      .then(response => {
-        return response.text()
-      }).then(response => {
-        return d3.tsvParse(response)
-      }).then(clusters => {
-        return clusters.map(item => {
-          return {
-            id: +item.center_id,
-            vector: item.center_vectors.split('|').map(value => +value),
-          }
-        })
-      })
-
-    this.setState({
-      items,
-      clusters,
-    })
+  renderInline(props = {}) {
+    return (
+      <div>
+        <Label
+          title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        />
+        <TextField
+          name="text"
+          value={this.props.data.text}
+          {...props}
+        />
+        <NumberField
+          name="number"
+          value={this.props.data.number}
+          {...props}
+        />
+        <Select
+          name="select"
+          value={this.props.data.select}
+          {...props}
+        >
+          <SelectItem value="0" title="Item 1" />
+          <SelectItem value="1" title="Item 2" />
+          <SelectItem value="2" title="Item 3" />
+        </Select>
+        <Checkbox
+          title="Item 1"
+          name="checkbox1"
+          checked={this.props.data.checkbox1}
+          {...props}
+        />
+        <Checkbox
+          title="Item 2"
+          name="checkbox2"
+          checked={this.props.data.checkbox2}
+          {...props}
+        />
+        <Checkbox
+          title="Item 3"
+          name="checkbox3"
+          checked={this.props.data.checkbox3}
+          {...props}
+        />
+        <RadioGroup
+          name="radio"
+          value={this.props.data.radio}
+          {...props}
+        >
+          <Radio value="0" title="Item 1" />
+          <Radio value="1" title="Item 2" />
+          <Radio value="2" title="Item 3" />
+        </RadioGroup>
+        <Range
+          name="range"
+          value={this.props.data.range}
+          {...props}
+        />
+        <Coordinates
+          name="coordinates2"
+          value={this.props.data.coordinates2}
+          {...props}
+        />
+        <Coordinates
+          dimensions={3}
+          name="coordinates3"
+          value={this.props.data.coordinates3}
+          {...props}
+        />
+        <Coordinates
+          dimensions={4}
+          name="coordinates4"
+          value={this.props.data.coordinates4}
+          {...props}
+        />
+        <Matrix
+          cols={3}
+          rows={3}
+          name="matrix"
+          value={this.props.data.matrix}
+          {...props}
+        />
+        <Button
+          title="Button"
+          {...props}
+        />
+        <Button
+          title="Button"
+          {...props}
+        />
+      </div>
+    )
   }
 
   render() {
     return (
       <Fragment>
-        <div
-          style={{
-            position: 'absolute',
-            padding: '0.5rem 1rem',
-          }}
-        >
-          Data Source:
-          <Select
-            onChange={(name, value) => {
-              this.loadData(value)
-            }}
-          >
-            <SelectItem value="highschool" title="Highschool" />
-            <SelectItem value="univ" title="University" />
-            <SelectItem value="parttimeworker" title="Parttime Worker" />
-            <SelectItem value="homemaker" title="Homemaker" />
-            <SelectItem value="elder" title="Elder" />
-          </Select>
-        </div>
-        <Grid columns={4}>
-          <ScatterPlot
-            x={0}
-            y={1}
-            items={this.state.items}
-            clusters={this.state.clusters}
-          />
-          <ScatterPlot
-            x={2}
-            y={3}
-            items={this.state.items}
-            clusters={this.state.clusters}
-          />
-          <ScatterPlot
-            x={4}
-            y={5}
-            items={this.state.items}
-            clusters={this.state.clusters}
-          />
-          <ScatterPlot
-            x={6}
-            y={7}
-            items={this.state.items}
-            clusters={this.state.clusters}
-          />
-          <ScatterPlot
-            x={8}
-            y={9}
-            items={this.state.items}
-            clusters={this.state.clusters}
-          />
-          <ScatterPlot
-            x={10}
-            y={11}
-            items={this.state.items}
-            clusters={this.state.clusters}
-          />
-          <ScatterPlot
-            x={12}
-            y={13}
-            items={this.state.items}
-            clusters={this.state.clusters}
-          />
-          <ScatterPlot
-            x={14}
-            y={15}
-            items={this.state.items}
-            clusters={this.state.clusters}
-          />
-        </Grid>
+        {this.renderInspector({ color: 'black' })}
+        {this.renderInspector({ color: 'black', position: 'topRight', disabled: true })}
       </Fragment>
     )
   }
 }
-// <Inspector
-//   onChange={(name, value) => {
-//     this.loadData(value)
-//   }}
-// >
-//   <InspectorItem title="Data Source">
-//     <Select>
-//       <SelectItem value="highschool" title="Highschool" />
-//       <SelectItem value="univ" title="University" />
-//       <SelectItem value="parttimeworker" title="Parttime Worker" />
-//       <SelectItem value="homemaker" title="Homemaker" />
-//       <SelectItem value="elder" title="Elder" />
-//     </Select>
-//   </InspectorItem>
-// </Inspector>
 
 App.propTypes = {}
 
 App.defaultProps = {}
 
 function mapStateToProps(state) {
-  return {}
+  return {
+    data: state.get('data').toJS(),
+  }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, actions)(App)

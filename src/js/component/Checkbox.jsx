@@ -1,5 +1,5 @@
-// The MIT License
-// Copyright (C) 2017-Present Shota Matsuda
+// Takram Confidential
+// Copyright (C) 2018-Present Takram
 
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
@@ -14,6 +14,18 @@ export default class Checkbox extends PureComponent {
       checked: props.checked,
     }
     this.onChange = this.onChange.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { checked } = nextProps
+    if (checked == null ||
+        checked === this.props.checked ||
+        checked === this.state.checked) {
+      return
+    }
+    this.setState({
+      checked,
+    })
   }
 
   onChange(event) {
@@ -34,15 +46,25 @@ export default class Checkbox extends PureComponent {
       <div
         className={classNames([
           styles.element,
-          this.props.className,
+          this.props.className, {
+            [styles.element__fullWidth]: this.props.fullWidth,
+          },
         ])}
       >
-        <label className={styles.label}>
+        <label
+          className={classNames([
+            styles.label, {
+              [styles.label__fullWidth]: this.props.fullWidth,
+              [styles.label__disabled]: this.props.disabled,
+            },
+          ])}
+        >
           <input
             className={styles.input}
             type="checkbox"
             name={this.props.name}
             checked={this.state.checked}
+            disabled={this.props.disabled}
             onChange={this.onChange}
           />
           {this.props.title}
@@ -56,6 +78,8 @@ Checkbox.propTypes = {
   name: PropTypes.string,
   checked: PropTypes.bool,
   title: PropTypes.node,
+  fullWidth: PropTypes.bool,
+  disabled: PropTypes.bool,
   className: PropTypes.string,
   onChange: PropTypes.func,
 }
@@ -64,6 +88,8 @@ Checkbox.defaultProps = {
   name: null,
   checked: false,
   title: null,
+  fullWidth: false,
+  disabled: false,
   className: null,
   onChange: null,
 }

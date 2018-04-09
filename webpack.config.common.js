@@ -97,7 +97,7 @@ module.exports = mode => ({
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(['dist/**/*'], {
+    new CleanWebpackPlugin(['dist'], {
       root: path.resolve(__dirname),
       exclude: ['asset', 'data'],
     }),
