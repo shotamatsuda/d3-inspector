@@ -4,7 +4,6 @@
 .element {
   overflow: scroll;
   padding: 1rem;
-  // background-color: #fafafa;
   user-select: none;
   box-sizing: border-box;
   height: 100%;
@@ -19,7 +18,7 @@
     height: auto;
     max-height: calc(100% - 2rem);
     border-radius: 0.5rem;
-    box-shadow: 0 0 0 1px rgba(black, 0.05);
+    // box-shadow: 0 0 0 1px rgba(black, 0.05);
   }
 
   &__topLeft {
@@ -79,7 +78,7 @@
 .groupTitle {
   margin-bottom: 0.5rem;
   padding-left: 0.5rem;
-  color: rgba(black, 0.33);
+  color: rgba(white, 0.33);
   font-weight: bold;
   text-transform: uppercase;
 }

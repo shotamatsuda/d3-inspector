@@ -29,8 +29,8 @@
 }
 
 .name {
-  color: rgba(black, 0.25);
-  font-size: 80%;
+  color: rgba(white, 0.25);
+  font-size: 75%;
   font-weight: bold;
 }
 
@@ -47,17 +47,21 @@
   padding: 0.3rem;
   border: none;
   border-radius: 0.2rem;
-  box-shadow: 0 0 0 1px rgba(black, 0.1);
-  color: black;
-  background-color: white;
+  box-shadow: 0 0 0 1px rgba(black, 0.5);
+  color: inherit;
+  background-color: rgba(black, 0.25);
   font-size: inherit;
   transition: background-color 0.1s ease, box-shadow 0.1s ease;
 
   &:disabled {
-    color: rgba(black, 0.5);
+    opacity: 0.5;
   }
 
   &:focus {
-    box-shadow: 0 0 0 1px rgba(black, 0.1), 0 0 0 4px rgba(gray, 0.4);
+    box-shadow: 0 0 0 4px rgba(gray, 0.4);
+  }
+
+  &::-webkit-inner-spin-button {
+    appearance: none;
   }
 }

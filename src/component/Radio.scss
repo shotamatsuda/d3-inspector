@@ -47,7 +47,7 @@
   transition: ease 0.1s background, ease 0.1s box-shadow, ease 0.1s border-color;
 
   &:after {
-    @include svg-background('<circle cx="8" cy="8" r="3"/>', 16px, 16px, white);
+    @include svg-background('<circle cx="8" cy="8" r="3"/>', 16px, 16px, #252525);
     content: '';
     display: block;
     position: absolute;
@@ -75,8 +75,7 @@
   }
 
   &:checked {
-    background-color: rgba(black, 0.4);
-    border-color: rgba(black, 0.5);
+    background-color: #7f7f7f;
 
     &:after {
       opacity: 1;

@@ -13,7 +13,7 @@
 }
 
 .input {
-  @include svg-background('<path d="M10.646 6.854L7.999 4.207 5.353 6.854l-.707-.708 3.353-3.353 3.354 3.353M7.999 13.207L4.646 9.854l.707-.708 2.646 2.647 2.647-2.647.707.70"/>', 16px, 16px, rgba(black, 0.6))
+  @include svg-background('<path d="M10.646 6.854L7.999 4.207 5.353 6.854l-.707-.708 3.353-3.353 3.354 3.353M7.999 13.207L4.646 9.854l.707-.708 2.646 2.647 2.647-2.647.707.70"/>', 16px, 16px, rgba(white, 0.6))
   appearance: none;
   outline: none;
   box-sizing: border-box;
@@ -22,26 +22,25 @@
   border: none;
   border-radius: 0.2rem;
   box-shadow: 0 0 0 1px rgba(black, 0.1);
-  background-color: white;
+  color: inherit;
+  background-color: #4b4b4b;
   background-position: center right;
   background-repeat: no-repeat;
   background-size: 1rem 1rem;
   font-size: inherit;
-  transition: background-color 0.1s ease, box-shadow 0.1s ease;
+  transition: color 0.1s ease, background-color 0.1s ease;
 
   &__fullWidth {
     width: 100%;
   }
 
   &:disabled {
-    color: rgba(black, 0.5);
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 1px rgba(black, 0.1), 0 0 0 4px rgba(gray, 0.4);
+    opacity: 0.5;
   }
 
   &:active {
-    background-color: mix(black, white, 15%);
+    color: rgba(white, 0.3);
+    background-color: mix(black, #4b4b4b, 25%);
+    transition: none;
   }
 }

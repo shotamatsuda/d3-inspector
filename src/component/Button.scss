@@ -22,25 +22,22 @@
   border: none;
   border-radius: 0.2rem;
   box-shadow: 0 0 0 1px rgba(black, 0.1);
-  color: black;
-  background-color: rgba(black, 0.05);
+  color: inherit;
+  background-color: #4b4b4b;
   font-size: inherit;
-  transition: background-color 0.1s ease, box-shadow 0.1s ease;
+  transition: color 0.1s ease, background-color 0.1s ease;
 
   &__fullWidth {
     width: 100%;
   }
 
   &:disabled {
-    color: rgba(black, 0.5);
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 1px rgba(black, 0.1), 0 0 0 4px rgba(gray, 0.4);
+    opacity: 0.5;
   }
 
   &:active {
-    background-color: rgba(black, 0.2);
-    box-shadow: 0 0 0 1px rgba(black, 0.1), 0 0 0 4px rgba(gray, 0.4);
+    color: rgba(white, 0.3);
+    background-color: mix(black, #4b4b4b, 25%);
+    transition: none;
   }
 }
