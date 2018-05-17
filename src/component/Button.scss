@@ -23,7 +23,7 @@
   border-radius: 0.2rem;
   box-shadow: 0 0 0 1px rgba(black, 0.1);
   color: black;
-  background-color: white;
+  background-color: rgba(black, 0.05);
   font-size: inherit;
   transition: background-color 0.1s ease, box-shadow 0.1s ease;
 
@@ -40,7 +40,7 @@
   }
 
   &:active {
-    background-color: mix(black, white, 15%);
+    background-color: rgba(black, 0.2);
     box-shadow: 0 0 0 1px rgba(black, 0.1), 0 0 0 4px rgba(gray, 0.4);
   }
 }

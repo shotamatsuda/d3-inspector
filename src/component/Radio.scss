@@ -47,7 +47,7 @@
   transition: ease 0.1s background, ease 0.1s box-shadow, ease 0.1s border-color;
 
   &:after {
-    // svg-background('<circle cx="8" cy="8" r="3"/>', 16px, 16px, white, center)
+    @include svg-background('<circle cx="8" cy="8" r="3"/>', 16px, 16px, white);
     content: '';
     display: block;
     position: absolute;

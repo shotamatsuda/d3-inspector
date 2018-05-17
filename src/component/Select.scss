@@ -13,7 +13,7 @@
 }
 
 .input {
-  // svg-background('<path d="M10.646 6.854L7.999 4.207 5.353 6.854l-.707-.708 3.353-3.353 3.354 3.353M7.999 13.207L4.646 9.854l.707-.708 2.646 2.647 2.647-2.647.707.70"/>', 16px, 16px, rgba(black, 0.6), center right)
+  @include svg-background('<path d="M10.646 6.854L7.999 4.207 5.353 6.854l-.707-.708 3.353-3.353 3.354 3.353M7.999 13.207L4.646 9.854l.707-.708 2.646 2.647 2.647-2.647.707.70"/>', 16px, 16px, rgba(black, 0.6))
   appearance: none;
   outline: none;
   box-sizing: border-box;

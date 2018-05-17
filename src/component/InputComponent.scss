@@ -1,0 +1,13 @@
+// The MIT License
+// Copyright (C) 2017-Present Shota Matsuda
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+@mixin svg-background($data, $width, $height, $fill: black) {
+  background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 #{strip-unit($width)} #{strip-unit($height)}\"><style>*{fill:#{$fill};}</style>#{$data}</svg>");
+}
