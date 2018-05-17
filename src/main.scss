@@ -1,0 +1,16 @@
+// The MIT License
+// Copyright (C) 2017-Present Shota Matsuda
+
+body {
+  margin: 0;
+  padding: 0;
+  color: black;
+  background-color: white;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}

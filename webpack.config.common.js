@@ -11,19 +11,19 @@ module.exports = mode => ({
   entry: {
     main: [
       'babel-polyfill',
-      path.resolve(__dirname, 'src', 'js', 'main.jsx'),
-    ],
+      path.resolve(__dirname, 'src/main.jsx')
+    ]
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
+    filename: '[name].js'
   },
   resolve: {
     extensions: [
       '.js',
       '.jsx',
-      '.json',
-    ],
+      '.json'
+    ]
   },
   module: {
     rules: [
@@ -38,11 +38,11 @@ module.exports = mode => ({
                 'es2016',
                 'es2017',
                 'stage-3',
-                'stage-2',
-              ],
-            },
-          },
-        ],
+                'stage-2'
+              ]
+            }
+          }
+        ]
       },
       {
         test: /\.jsx$/,
@@ -56,11 +56,11 @@ module.exports = mode => ({
                 'es2017',
                 'stage-3',
                 'stage-2',
-                'react',
-              ],
-            },
-          },
-        ],
+                'react'
+              ]
+            }
+          }
+        ]
       },
       {
         test: /\.css$/,
@@ -68,12 +68,19 @@ module.exports = mode => ({
           mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
           {
             loader: 'css-loader',
-            options: { sourceMap: true },
+            options: {
+              minimize: mode === 'production',
+              sourceMap: true
+            }
           },
-        ],
+          {
+            loader: 'postcss-loader',
+            options: { sourceMap: true }
+          }
+        ]
       },
       {
-        test: /\.styl$/,
+        test: /\.scss$/,
         use: [
           mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
           {
@@ -81,32 +88,32 @@ module.exports = mode => ({
             options: {
               minimize: mode === 'production',
               modules: true,
-              sourceMap: true,
-            },
+              sourceMap: true
+            }
           },
           {
             loader: 'postcss-loader',
-            options: { sourceMap: true },
+            options: { sourceMap: true }
           },
           {
-            loader: 'stylus-loader',
-            options: { sourceMap: true },
-          },
-        ],
-      },
-    ],
+            loader: 'sass-loader',
+            options: { sourceMap: true }
+          }
+        ]
+      }
+    ]
   },
   plugins: [
     new CleanWebpackPlugin(['dist'], {
       root: path.resolve(__dirname),
-      exclude: ['asset', 'data'],
+      exclude: ['asset', 'data']
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
-      chunkFilename: '[id].css',
+      chunkFilename: '[id].css'
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'index.html'),
-    }),
-  ],
+      template: path.resolve(__dirname, 'src/index.html')
+    })
+  ]
 })
